@@ -79,7 +79,7 @@ export default {
     });
 
     //删除用户
-    mock.onGet('/user/remove').reply(config => {
+    mock.onPost('/user/remove').reply(config => {
       let { id } = config.params;
       _Users = _Users.filter(u => u.id !== id);
       return new Promise((resolve, reject) => {
@@ -93,7 +93,7 @@ export default {
     });
 
     //批量删除用户
-    mock.onGet('/user/batchremove').reply(config => {
+    mock.onPost('/user/batchremove').reply(config => {
       let { ids } = config.params;
       ids = ids.split(',');
       _Users = _Users.filter(u => !ids.includes(u.id));
@@ -108,7 +108,7 @@ export default {
     });
 
     //编辑用户
-    mock.onGet('/user/edit').reply(config => {
+    mock.onPost('/user/edit').reply(config => {
       let { id, name, addr, age, birth, sex } = config.params;
       _Users.some(u => {
         if (u.id === id) {
@@ -131,7 +131,7 @@ export default {
     });
 
     //新增用户
-    mock.onGet('/user/add').reply(config => {
+    mock.onPost('/user/add').reply(config => {
       let { name, addr, age, birth, sex } = config.params;
       _Users.push({
         name: name,

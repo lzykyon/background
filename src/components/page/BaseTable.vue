@@ -179,7 +179,9 @@
 				};
 				this.listLoading = true;
 				//NProgress.start();
-				getUserListPage(para).then((res) => {
+				//getUserListPage(para)
+				this.$store.dispatch('userlistpage', para)
+				.then((res) => {
 					this.total = res.data.total;
 					this.users = res.data.users;
 					this.listLoading = false;
@@ -194,7 +196,10 @@
 					this.listLoading = true;
 					//NProgress.start();
 					let para = { id: row.id };
-					removeUser(para).then((res) => {
+					//removeUser(para)
+					this.$store.dispatch('userdel', para)
+					.then((res) => {
+						console.log("this is handleDel");
 						this.listLoading = false;
 						//NProgress.done();
 						this.$message({
@@ -232,7 +237,9 @@
 							//NProgress.start();
 							let para = Object.assign({}, this.editForm);
 							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
-							editUser(para).then((res) => {
+							//editUser(para)
+							this.$store.dispatch('useredit', para)
+							.then((res) => {
 								this.editLoading = false;
 								//NProgress.done();
 								this.$message({
@@ -256,7 +263,9 @@
 							//NProgress.start();
 							let para = Object.assign({}, this.addForm);
 							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
-							addUser(para).then((res) => {
+							//addUser(para)
+							this.$store.dispatch('useradd', para)
+							.then((res) => {
 								this.addLoading = false;
 								//NProgress.done();
 								this.$message({
@@ -283,7 +292,9 @@
 					this.listLoading = true;
 					//NProgress.start();
 					let para = { ids: ids };
-					batchRemoveUser(para).then((res) => {
+					//batchRemoveUser(para)
+					this.$store.dispatch('userdelall', para)
+					.then((res) => {
 						this.listLoading = false;
 						//NProgress.done();
 						this.$message({

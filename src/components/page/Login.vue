@@ -48,7 +48,9 @@
                         //self.$router.push('/basetable');
                         this.logining = true;
                         var loginParams = { username: self.ruleForm.username, password: self.ruleForm.password };
-                        requestLogin(loginParams).then(data => {
+                        requestLogin(loginParams)
+                        //this.$store.dispatch('login', loginParams)
+                        .then(data => {
                             this.logining = false;
                             let { msg, code, user } = data;
                             if (code !== 200) {
